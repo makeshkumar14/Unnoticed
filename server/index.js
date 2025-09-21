@@ -3,6 +3,9 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
+// Import database connection
+const database = require('./utils/database');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -38,7 +41,35 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'AI Copilot for Parents API is running' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+// Start server and connect to database
+async function startServer() {
+  try {
+    // Connect to MongoDB
+    await database.connect();
+    
+    // Start the server
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`📊 Database: ${database.getConnectionStatus() ? 'Connected' : 'Disconnected'}`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
+  }
+}
+
+// Handle graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('\n🛑 Shutting down server...');
+  await database.disconnect();
+  process.exit(0);
 });
+
+process.on('SIGTERM', async () => {
+  console.log('\n🛑 Shutting down server...');
+  await database.disconnect();
+  process.exit(0);
+});
+
+startServer();

@@ -5,9 +5,9 @@ const dataManager = require('../utils/dataManager');
 const router = express.Router();
 
 // Get all health records
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const records = dataManager.getAll('healthRecords');
+    const records = await dataManager.getAll('healthRecords');
     res.json(records);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch health records' });
@@ -15,9 +15,9 @@ router.get('/', (req, res) => {
 });
 
 // Get health records for specific child
-router.get('/child/:childId', (req, res) => {
+router.get('/child/:childId', async (req, res) => {
   try {
-    const records = dataManager.findByChildId('healthRecords', req.params.childId);
+    const records = await dataManager.findByChildId('healthRecords', req.params.childId);
     res.json(records);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch health records' });
@@ -25,9 +25,9 @@ router.get('/child/:childId', (req, res) => {
 });
 
 // Get health record by ID
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const record = dataManager.findById('healthRecords', req.params.id);
+    const record = await dataManager.findById('healthRecords', req.params.id);
     if (!record) {
       return res.status(404).json({ error: 'Health record not found' });
     }
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Create new health record
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { childId, type, title, date, status, notes } = req.body;
     
@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    const createdRecord = dataManager.create('healthRecords', record);
+    const createdRecord = await dataManager.create('healthRecords', record);
     res.status(201).json(createdRecord);
   } catch (error) {
     res.status(500).json({ error: 'Failed to create health record' });
@@ -65,10 +65,10 @@ router.post('/', (req, res) => {
 });
 
 // Update health record
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const updates = req.body;
-    const updatedRecord = dataManager.update('healthRecords', req.params.id, updates);
+    const updatedRecord = await dataManager.update('healthRecords', req.params.id, updates);
     if (!updatedRecord) {
       return res.status(404).json({ error: 'Health record not found' });
     }
@@ -80,9 +80,9 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete health record
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const success = dataManager.delete('healthRecords', req.params.id);
+    const success = await dataManager.delete('healthRecords', req.params.id);
     if (!success) {
       return res.status(404).json({ error: 'Health record not found' });
     }
@@ -94,9 +94,9 @@ router.delete('/:id', (req, res) => {
 });
 
 // Get upcoming health events
-router.get('/upcoming/:childId', (req, res) => {
+router.get('/upcoming/:childId', async (req, res) => {
   try {
-    const records = dataManager.findByChildId('healthRecords', req.params.childId);
+    const records = await dataManager.findByChildId('healthRecords', req.params.childId);
     const now = new Date();
     const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
     
@@ -112,14 +112,14 @@ router.get('/upcoming/:childId', (req, res) => {
 });
 
 // Mark health record as completed
-router.patch('/:id/complete', (req, res) => {
+router.patch('/:id/complete', async (req, res) => {
   try {
     const updates = { 
       status: 'completed',
       completedAt: new Date().toISOString()
     };
     
-    const updatedRecord = dataManager.update('healthRecords', req.params.id, updates);
+    const updatedRecord = await dataManager.update('healthRecords', req.params.id, updates);
     if (!updatedRecord) {
       return res.status(404).json({ error: 'Health record not found' });
     }

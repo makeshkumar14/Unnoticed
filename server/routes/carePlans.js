@@ -6,9 +6,9 @@ const geminiService = require('../utils/geminiService');
 const router = express.Router();
 
 // Get all care plans
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const carePlans = dataManager.getAll('carePlans');
+    const carePlans = await dataManager.getAll('carePlans');
     res.json(carePlans);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch care plans' });
@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
 });
 
 // Get care plans for specific child
-router.get('/child/:childId', (req, res) => {
+router.get('/child/:childId', async (req, res) => {
   try {
-    const carePlans = dataManager.findByChildId('carePlans', req.params.childId);
+    const carePlans = await dataManager.findByChildId('carePlans', req.params.childId);
     res.json(carePlans);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch care plans' });
@@ -26,9 +26,9 @@ router.get('/child/:childId', (req, res) => {
 });
 
 // Get care plan by ID
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const carePlan = dataManager.findById('carePlans', req.params.id);
+    const carePlan = await dataManager.findById('carePlans', req.params.id);
     if (!carePlan) {
       return res.status(404).json({ error: 'Care plan not found' });
     }
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const child = dataManager.findById('children', childId);
+    const child = await dataManager.findById('children', childId);
     if (!child) {
       return res.status(404).json({ error: 'Child not found' });
     }
@@ -91,7 +91,7 @@ router.post('/', async (req, res) => {
       updatedAt: new Date().toISOString()
     };
 
-    const createdCarePlan = dataManager.create('carePlans', carePlan);
+    const createdCarePlan = await dataManager.create('carePlans', carePlan);
     res.status(201).json(createdCarePlan);
   } catch (error) {
     res.status(500).json({ error: 'Failed to create care plan' });
@@ -99,14 +99,14 @@ router.post('/', async (req, res) => {
 });
 
 // Update care plan
-router.put('/:id', (req, res) => {
+router.put('/:id', async(req, res) => {
   try {
     const updates = {
       ...req.body,
       updatedAt: new Date().toISOString()
     };
     
-    const updatedCarePlan = dataManager.update('carePlans', req.params.id, updates);
+    const updatedCarePlan = await dataManager.update('carePlans', req.params.id, updates);
     if (!updatedCarePlan) {
       return res.status(404).json({ error: 'Care plan not found' });
     }
@@ -118,9 +118,9 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete care plan
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async(req, res) => {
   try {
-    const success = dataManager.delete('carePlans', req.params.id);
+    const success = await dataManager.delete('carePlans', req.params.id);
     if (!success) {
       return res.status(404).json({ error: 'Care plan not found' });
     }
@@ -132,9 +132,9 @@ router.delete('/:id', (req, res) => {
 });
 
 // Update task status
-router.patch('/:id/tasks/:taskId', (req, res) => {
+router.patch('/:id/tasks/:taskId', async(req, res) => {
   try {
-    const carePlan = dataManager.findById('carePlans', req.params.id);
+    const carePlan = await dataManager.findById('carePlans', req.params.id);
     if (!carePlan) {
       return res.status(404).json({ error: 'Care plan not found' });
     }
@@ -150,7 +150,7 @@ router.patch('/:id/tasks/:taskId', (req, res) => {
       completedAt: req.body.completed ? new Date().toISOString() : null
     };
 
-    const updatedCarePlan = dataManager.update('carePlans', req.params.id, {
+    const updatedCarePlan = await dataManager.update('carePlans', req.params.id, {
       tasks: carePlan.tasks,
       updatedAt: new Date().toISOString()
     });
@@ -162,9 +162,9 @@ router.patch('/:id/tasks/:taskId', (req, res) => {
 });
 
 // Add new task to care plan
-router.post('/:id/tasks', (req, res) => {
+router.post('/:id/tasks', async(req, res) => {
   try {
-    const carePlan = dataManager.findById('carePlans', req.params.id);
+    const carePlan = await dataManager.findById('carePlans', req.params.id);
     if (!carePlan) {
       return res.status(404).json({ error: 'Care plan not found' });
     }
@@ -183,7 +183,7 @@ router.post('/:id/tasks', (req, res) => {
 
     carePlan.tasks.push(newTask);
 
-    const updatedCarePlan = dataManager.update('carePlans', req.params.id, {
+    const updatedCarePlan = await dataManager.update('carePlans', req.params.id, {
       tasks: carePlan.tasks,
       updatedAt: new Date().toISOString()
     });
@@ -195,16 +195,16 @@ router.post('/:id/tasks', (req, res) => {
 });
 
 // Delete task from care plan
-router.delete('/:id/tasks/:taskId', (req, res) => {
+router.delete('/:id/tasks/:taskId', async(req, res) => {
   try {
-    const carePlan = dataManager.findById('carePlans', req.params.id);
+    const carePlan = await dataManager.findById('carePlans', req.params.id);
     if (!carePlan) {
       return res.status(404).json({ error: 'Care plan not found' });
     }
 
     carePlan.tasks = carePlan.tasks.filter(task => task.id !== req.params.taskId);
 
-    const updatedCarePlan = dataManager.update('carePlans', req.params.id, {
+    const updatedCarePlan = await dataManager.update('carePlans', req.params.id, {
       tasks: carePlan.tasks,
       updatedAt: new Date().toISOString()
     });
@@ -218,12 +218,12 @@ router.delete('/:id/tasks/:taskId', (req, res) => {
 // Regenerate care plan with AI
 router.post('/:id/regenerate', async (req, res) => {
   try {
-    const carePlan = dataManager.findById('carePlans', req.params.id);
+    const carePlan = await dataManager.findById('carePlans', req.params.id);
     if (!carePlan) {
       return res.status(404).json({ error: 'Care plan not found' });
     }
 
-    const child = dataManager.findById('children', carePlan.childId);
+    const child = await dataManager.findById('children', carePlan.childId);
     if (!child) {
       return res.status(404).json({ error: 'Child not found' });
     }
@@ -246,7 +246,7 @@ router.post('/:id/regenerate', async (req, res) => {
       }))
     ];
 
-    const updatedCarePlan = dataManager.update('carePlans', req.params.id, {
+    const updatedCarePlan = await dataManager.update('carePlans', req.params.id, {
       tasks: updatedTasks,
       updatedAt: new Date().toISOString()
     });
