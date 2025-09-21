@@ -13,6 +13,7 @@ class Database {
 
       await mongoose.connect(mongoUri); // no deprecated options
       this.isConnected = true;
+
       console.log("✅ Connected to MongoDB successfully");
 
       mongoose.connection.on("error", (err) => {
