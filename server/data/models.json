@@ -1,0 +1,419 @@
+{
+  "children": [
+    {
+      "id": "child-1",
+      "name": "Emma Johnson",
+      "dateOfBirth": "2020-03-15",
+      "gender": "female",
+      "parentId": "parent-1",
+      "medicalHistory": {
+        "allergies": [
+          "peanuts"
+        ],
+        "chronicConditions": [],
+        "medications": []
+      },
+      "developmentMilestones": {
+        "physical": {
+          "height": 95,
+          "weight": 14.2,
+          "lastUpdated": "2024-01-15"
+        },
+        "cognitive": {
+          "milestones": [
+            "speaking in sentences",
+            "counting to 10"
+          ],
+          "lastUpdated": "2024-01-10"
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-15T00:00:00Z"
+    },
+    {
+      "id": "8a76f949-8de8-4452-b684-47cdbcccfb53",
+      "name": "Makeshhh....",
+      "dateOfBirth": "2025-09-11",
+      "gender": "male",
+      "parentId": "parent-1",
+      "medicalHistory": {
+        "allergies": [],
+        "chronicConditions": [],
+        "medications": []
+      },
+      "developmentMilestones": {
+        "physical": {
+          "height": 0,
+          "weight": 0,
+          "lastUpdated": "2025-09-20T20:55:20.651Z"
+        },
+        "cognitive": {
+          "milestones": [],
+          "lastUpdated": "2025-09-20T20:55:20.652Z"
+        }
+      },
+      "createdAt": "2025-09-20T20:55:20.652Z",
+      "updatedAt": "2025-09-20T20:55:20.652Z"
+    }
+  ],
+  "parents": [
+    {
+      "id": "parent-1",
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@email.com",
+      "phone": "+1234567890",
+      "preferences": {
+        "notifications": true,
+        "reminderFrequency": "daily",
+        "language": "en"
+      },
+      "createdAt": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "healthRecords": [
+    {
+      "id": "record-1",
+      "childId": "child-1",
+      "type": "vaccination",
+      "title": "MMR Vaccine",
+      "date": "2024-01-20",
+      "status": "scheduled",
+      "notes": "Second dose of MMR vaccine",
+      "createdAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "record-2",
+      "childId": "child-1",
+      "type": "checkup",
+      "title": "Annual Physical",
+      "date": "2024-02-15",
+      "status": "completed",
+      "notes": "Annual wellness checkup",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "completedAt": "2025-09-20T20:59:27.733Z"
+    }
+  ],
+  "reminders": [
+    {
+      "id": "reminder-1",
+      "childId": "child-1",
+      "type": "medication",
+      "title": "Give vitamins",
+      "time": "08:00",
+      "frequency": "daily",
+      "isActive": true,
+      "lastTriggered": "2024-01-15T08:00:00Z",
+      "createdAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "reminder-2",
+      "childId": "child-1",
+      "type": "appointment",
+      "title": "Doctor appointment",
+      "date": "2024-01-20",
+      "time": "14:00",
+      "isActive": true,
+      "createdAt": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "carePlans": [
+    {
+      "id": "plan-1",
+      "childId": "child-1",
+      "title": "Nutrition Plan",
+      "description": "Age-appropriate nutrition guidelines",
+      "tasks": [
+        {
+          "id": "d630b57d-b5e5-40b4-938f-120ffce3d912",
+          "title": "Maintain consistent schedule",
+          "completed": false,
+          "dueDate": "2025-09-21"
+        },
+        {
+          "id": "3b43e184-de46-4a6d-a337-1b4a8ee3d016",
+          "title": "Ensure adequate rest",
+          "completed": true,
+          "dueDate": "2025-09-22",
+          "completedAt": "2025-09-21T03:22:05.517Z"
+        },
+        {
+          "id": "aab7550b-7eb0-484f-b23c-7491959d17a9",
+          "title": "Regular health checkups",
+          "completed": false,
+          "dueDate": "2025-09-28"
+        },
+        {
+          "id": "621dd33e-8da3-4082-a2f9-294ede238e77",
+          "title": "Monitor growth",
+          "completed": false,
+          "dueDate": "2025-09-29"
+        }
+      ],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2025-09-21T03:22:05.517Z"
+    }
+  ],
+  "aiInsights": [
+    {
+      "id": "insight-1",
+      "childId": "child-1",
+      "type": "development",
+      "title": "Language Development Progress",
+      "content": "Emma is showing excellent language development. Consider introducing more complex vocabulary through reading.",
+      "confidence": 0.85,
+      "createdAt": "2024-01-15T00:00:00Z"
+    },
+    {
+      "id": "b0f7eee7-c5d0-49a8-a056-b9f3b8fcfe4d",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-20T20:54:19.227Z"
+    },
+    {
+      "id": "ed5aa19d-f9f2-48ae-8137-62012d5d273c",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:58:53.899Z"
+    },
+    {
+      "id": "bdfe7a04-1923-44da-ada4-7fc72714d752",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:58:55.134Z"
+    },
+    {
+      "id": "90a29a02-be2c-412b-a678-1cfe6b2859c6",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:01.802Z"
+    },
+    {
+      "id": "99a11d56-1f73-40b0-b10c-be01b592ce7b",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:02.156Z"
+    },
+    {
+      "id": "42047371-f81a-4afe-bca4-8b9fa0d88292",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:02.413Z"
+    },
+    {
+      "id": "5a099b52-89fd-4a70-8c2b-301cac7c438f",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:02.608Z"
+    },
+    {
+      "id": "e21334f1-1ada-4ff4-84b2-2f5a41c3ab02",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:03.019Z"
+    },
+    {
+      "id": "2414dbce-5d81-4c65-98a7-41f5fdb84f46",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:03.428Z"
+    },
+    {
+      "id": "55eec011-fc3e-4f31-97e1-4fae664195ad",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:06.093Z"
+    },
+    {
+      "id": "01497fb6-8498-4d5c-abae-fd9a635b5e6d",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:06.227Z"
+    },
+    {
+      "id": "35b9dfa7-297e-49b9-9550-977c40e3fb5f",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:06.851Z"
+    },
+    {
+      "id": "b4cf8226-7e7a-4fba-89d4-38b629870a76",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:07.320Z"
+    },
+    {
+      "id": "4e5a9af2-f584-4d7f-9af1-1f408709e3d6",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:07.382Z"
+    },
+    {
+      "id": "985df7ba-6a92-444b-b86b-5ede4dc6a061",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:07.456Z"
+    },
+    {
+      "id": "684e9218-3947-48a2-a6ba-f742a02a55d3",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:07.832Z"
+    },
+    {
+      "id": "23fbdf3c-4a07-45e4-9b41-42b17b8d9466",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:07.844Z"
+    },
+    {
+      "id": "851e4f05-0ae6-43c7-b7ba-77ff877490fd",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:08.017Z"
+    },
+    {
+      "id": "df29715c-e258-426d-8bc3-8c61994f25d8",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:08.081Z"
+    },
+    {
+      "id": "f81413e2-7b7d-4e58-be51-321db189a466",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:08.629Z"
+    },
+    {
+      "id": "d0766200-c955-4833-bfe0-efccda28fc0f",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:08.714Z"
+    },
+    {
+      "id": "de330770-750f-4356-8e35-25d4077691be",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:09.023Z"
+    },
+    {
+      "id": "fb27356c-4d70-4491-9b24-d8604aaa1d65",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:09.044Z"
+    },
+    {
+      "id": "b51f723a-136a-4a6e-ae7a-7306f110a053",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:09.259Z"
+    },
+    {
+      "id": "555b4e2d-1cd6-4fec-84b2-dd064834a350",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:09.470Z"
+    },
+    {
+      "id": "e71cd807-06c3-4614-b593-9261a5772246",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:09.675Z"
+    },
+    {
+      "id": "9509423c-25e0-466d-86ee-ce9b87956b7b",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:10.088Z"
+    },
+    {
+      "id": "264abe3e-97b5-4df3-9936-17d096d920f3",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T02:59:16.124Z"
+    }
+  ]
+}
