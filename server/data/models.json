@@ -54,6 +54,81 @@
       },
       "createdAt": "2025-09-20T20:55:20.652Z",
       "updatedAt": "2025-09-20T20:55:20.652Z"
+    },
+    {
+      "id": "a73972a2-0c17-412f-b4e8-5ee323eece51",
+      "name": "Makesh",
+      "dateOfBirth": "2021-02-10",
+      "gender": "male",
+      "parentId": "parent-1",
+      "medicalHistory": {
+        "allergies": [],
+        "chronicConditions": [],
+        "medications": []
+      },
+      "developmentMilestones": {
+        "physical": {
+          "height": 0,
+          "weight": 0,
+          "lastUpdated": "2025-09-21T03:44:02.523Z"
+        },
+        "cognitive": {
+          "milestones": [],
+          "lastUpdated": "2025-09-21T03:44:02.523Z"
+        }
+      },
+      "createdAt": "2025-09-21T03:44:02.523Z",
+      "updatedAt": "2025-09-21T03:44:02.523Z"
+    },
+    {
+      "id": "7fecf9b7-4547-4a90-9a7b-801ee092ccf6",
+      "name": "Makesh",
+      "dateOfBirth": "2021-02-10",
+      "gender": "male",
+      "parentId": "parent-1",
+      "medicalHistory": {
+        "allergies": [],
+        "chronicConditions": [],
+        "medications": []
+      },
+      "developmentMilestones": {
+        "physical": {
+          "height": 0,
+          "weight": 0,
+          "lastUpdated": "2025-09-21T03:44:03.475Z"
+        },
+        "cognitive": {
+          "milestones": [],
+          "lastUpdated": "2025-09-21T03:44:03.477Z"
+        }
+      },
+      "createdAt": "2025-09-21T03:44:03.477Z",
+      "updatedAt": "2025-09-21T03:44:03.477Z"
+    },
+    {
+      "id": "de2d7471-e8e2-449e-9a5f-45d8368d9f91",
+      "name": "Makesh",
+      "dateOfBirth": "2021-02-10",
+      "gender": "male",
+      "parentId": "parent-1",
+      "medicalHistory": {
+        "allergies": [],
+        "chronicConditions": [],
+        "medications": []
+      },
+      "developmentMilestones": {
+        "physical": {
+          "height": 0,
+          "weight": 0,
+          "lastUpdated": "2025-09-21T03:44:05.983Z"
+        },
+        "cognitive": {
+          "milestones": [],
+          "lastUpdated": "2025-09-21T03:44:05.983Z"
+        }
+      },
+      "createdAt": "2025-09-21T03:44:05.983Z",
+      "updatedAt": "2025-09-21T03:44:05.983Z"
     }
   ],
   "parents": [
@@ -414,6 +489,15 @@
       "content": "Continue providing love, care, and attention to your child's development.",
       "confidence": 0.85,
       "createdAt": "2025-09-21T02:59:16.124Z"
+    },
+    {
+      "id": "3e68d4b3-0d4e-4fbf-b443-dcdeaf975135",
+      "childId": "child-1",
+      "type": "personalized_tip",
+      "title": "Personalized Health Tip",
+      "content": "Continue providing love, care, and attention to your child's development.",
+      "confidence": 0.85,
+      "createdAt": "2025-09-21T03:44:16.932Z"
     }
   ]
 }

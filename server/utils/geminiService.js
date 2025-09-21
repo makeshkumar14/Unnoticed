@@ -1,12 +1,12 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 class GeminiService {
   constructor() {
     this.genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-pro' });
+    this.model = this.genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
   }
 
-  async generatePersonalizedTip(childData, context = '') {
+  async generatePersonalizedTip(childData, context = "") {
     try {
       const prompt = `
         As an AI pediatric health assistant, provide personalized advice for a child based on the following information:
@@ -16,7 +16,9 @@ class GeminiService {
         - Age: ${this.calculateAge(childData.dateOfBirth)} years old
         - Gender: ${childData.gender}
         - Medical History: ${JSON.stringify(childData.medicalHistory)}
-        - Development Milestones: ${JSON.stringify(childData.developmentMilestones)}
+        - Development Milestones: ${JSON.stringify(
+          childData.developmentMilestones
+        )}
         
         Context: ${context}
         
@@ -32,7 +34,7 @@ class GeminiService {
       const result = await this.model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
-      
+
       // Try to parse as JSON, fallback to structured text
       try {
         return JSON.parse(text);
@@ -41,21 +43,21 @@ class GeminiService {
           tip: text,
           milestone: "Continue monitoring developmental progress",
           safety: "Ensure childproofing is up to date",
-          nutrition: "Maintain balanced meals with fruits and vegetables"
+          nutrition: "Maintain balanced meals with fruits and vegetables",
         };
       }
     } catch (error) {
-      console.error('Error generating personalized tip:', error);
+      console.error("Error generating personalized tip:", error);
       return {
         tip: "Continue providing love, care, and attention to your child's development.",
         milestone: "Monitor age-appropriate developmental milestones",
         safety: "Ensure a safe environment for exploration and play",
-        nutrition: "Provide balanced nutrition with age-appropriate portions"
+        nutrition: "Provide balanced nutrition with age-appropriate portions",
       };
     }
   }
 
-  async generateCarePlan(childData, specificNeeds = '') {
+  async generateCarePlan(childData, specificNeeds = "") {
     try {
       const prompt = `
         Create a comprehensive care plan for a child with the following information:
@@ -64,7 +66,9 @@ class GeminiService {
         - Name: ${childData.name}
         - Age: ${this.calculateAge(childData.dateOfBirth)} years old
         - Medical History: ${JSON.stringify(childData.medicalHistory)}
-        - Current Development: ${JSON.stringify(childData.developmentMilestones)}
+        - Current Development: ${JSON.stringify(
+          childData.developmentMilestones
+        )}
         
         Specific Needs: ${specificNeeds}
         
@@ -81,26 +85,42 @@ class GeminiService {
       const result = await this.model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
-      
+
       try {
         return JSON.parse(text);
       } catch {
         return {
           dailyRoutine: ["Regular meal times", "Adequate sleep", "Play time"],
-          healthMonitoring: ["Track growth", "Monitor development", "Regular checkups"],
-          activities: ["Age-appropriate play", "Reading time", "Physical activity"],
-          safety: ["Childproof environment", "Supervision", "Emergency preparedness"],
-          nutrition: ["Balanced meals", "Adequate hydration", "Limit processed foods"]
+          healthMonitoring: [
+            "Track growth",
+            "Monitor development",
+            "Regular checkups",
+          ],
+          activities: [
+            "Age-appropriate play",
+            "Reading time",
+            "Physical activity",
+          ],
+          safety: [
+            "Childproof environment",
+            "Supervision",
+            "Emergency preparedness",
+          ],
+          nutrition: [
+            "Balanced meals",
+            "Adequate hydration",
+            "Limit processed foods",
+          ],
         };
       }
     } catch (error) {
-      console.error('Error generating care plan:', error);
+      console.error("Error generating care plan:", error);
       return {
         dailyRoutine: ["Maintain consistent schedule", "Ensure adequate rest"],
         healthMonitoring: ["Regular health checkups", "Monitor growth"],
         activities: ["Encourage play and exploration", "Reading and learning"],
         safety: ["Maintain safe environment", "Supervise activities"],
-        nutrition: ["Provide balanced nutrition", "Encourage healthy eating"]
+        nutrition: ["Provide balanced nutrition", "Encourage healthy eating"],
       };
     }
   }
@@ -110,7 +130,9 @@ class GeminiService {
       const prompt = `
         Analyze the following health data for a child and provide insights:
         
-        Child: ${childData.name}, Age: ${this.calculateAge(childData.dateOfBirth)} years
+        Child: ${childData.name}, Age: ${this.calculateAge(
+        childData.dateOfBirth
+      )} years
         Health Records: ${JSON.stringify(healthData)}
         
         Provide insights on:
@@ -125,7 +147,7 @@ class GeminiService {
       const result = await this.model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
-      
+
       try {
         return JSON.parse(text);
       } catch {
@@ -133,16 +155,16 @@ class GeminiService {
           trends: "Continue monitoring health metrics",
           concerns: "No immediate concerns identified",
           recommendations: "Maintain current care routine",
-          milestones: "Watch for age-appropriate developmental progress"
+          milestones: "Watch for age-appropriate developmental progress",
         };
       }
     } catch (error) {
-      console.error('Error generating health insight:', error);
+      console.error("Error generating health insight:", error);
       return {
         trends: "Health monitoring is on track",
         concerns: "Continue regular health monitoring",
         recommendations: "Maintain consistent care routine",
-        milestones: "Monitor developmental progress"
+        milestones: "Monitor developmental progress",
       };
     }
   }
@@ -152,11 +174,14 @@ class GeminiService {
     const birthDate = new Date(dateOfBirth);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
       age--;
     }
-    
+
     return age;
   }
 }
