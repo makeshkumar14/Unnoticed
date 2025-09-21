@@ -99,7 +99,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update care plan
-router.put('/:id', async(req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const updates = {
       ...req.body,
